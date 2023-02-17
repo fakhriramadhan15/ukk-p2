@@ -1,56 +1,64 @@
 @extends('master')
 
-
+@section('judul')
+    <h1>DATA TABLE</h1>
+@endsection
 
 @section('content')
-<H1>DATA</H1>
 <div class="card">
-    <table id="example2" class="table table-bordered table-hover" class="datatable" style="width: 100%" id="table1">
+    <div class="card-header">
+      <h3 class="card-title">Pengaduan Masyarakat</h3>
+      <div class="col card-header text-right">
+      <a class="btn btn-primary"  href="{{ route('pengaduan.create') }}">
+        <i class="fas fa-plus"></i>
+      Pengaduan</a>
+
+</a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table id="example2" class="table table-bordered table-hover">
         <thead>
-          <tr>  
-            <th>No</th>
-            <th>Tanggal Pengaduan</th>
-            <th>Isi Laporan</th>
-            <th>Foto</th>
-            <th>Status</th>
-            <th>Action</th> 
-          </tr>
+        <tr>
+          <th>No</th>
+          <th>Tanggal pengaduan</th>
+          <th>Isi laporan</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
-          <tr>
-            @forelse ($pengaduans as $pengaduan)
-            <tr>
-              <td>{{ $loop -> iteration }}</td>
-              <td>{{ $pengaduan -> tgl_pengaduan }}</td>
-              <td>{{ $pengaduan -> isi_laporan }}</td>
-              <td>{{ $pengaduan -> Foto }}</td>
-              <td>{{ $pengaduan -> status }}</td>
-              <td>{{ $pengaduan -> action }}</td>
-              <td>
-                @if (auth()->user()->level === 'petugas')
-                <div class="d-flex flex-nowrap flex-column flex-md-row justify-center">
-                  <form action="/pengaduan/{{ $pengaduan->id }}" method="POST">
-                    <a class="btn btn-info mr3" href="/pengaduan{{ $pengaduan->id }}">Detail</a>
-                    <a class="btn btn-warning mr3" href="/pengaduan{{ $pengaduan->id }}">Edit</a>
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" class="btn btn-danger" value="Delete" >
-                  </form>
-                </div>
-                @endif
-              </td>
-            </tr>
-            @empty
-            <tr>
-              <td colspan="5" style="text-align: center" class="text-danger"> <strong>DATA PENGADUAN KOSONG</strong> </td>
-            </tr>
-            @endforelse
-        </tbody>
-    </table>
-</div>
+           @forelse ($pengaduans as $item)
+        <tr>
+          <td>{{ $loop->iteration }}</td>
+          <td>{{ $item->tgl_pengaduan}}</td>
+          <td>{{ $item->isi_laporan}}</td>
+          <td>{{ $item->session_status == '0' ? 'Belum' : $item->status }}</td>        
+          <td>
+            
+          <form action="{{ route('pengaduan.destroy', $item->id) }}" method="POST">
+            @if ($item->status == '0')
+               <a class="btn btn-primary"  href="/pengaduan/{{ $item->id }}/">Detail</a>
+               <a class="btn btn-warning" href="{{ route('pengaduan.edit', $item->id) }}">Edit</a>
+            @csrf
+            @method('DELETE')
+             <input type="submit" Class="btn btn-danger" value="Delete">
+          @else
+            <a class="btn btn-primary"  href="pengaduan/">Detail</a>
+          @endif
+          </form>
+            </td>
+        </tr>
+        @empty
+
+        @endforelse
+       
+      </table>
+    </div>
+    <!-- /.card-body -->
   
 @endsection
-<!-- 
+
 @push('scripts')
 <script src="{{ asset ('adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset ('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -62,4 +70,4 @@ $(function () {
       $("#example2").DataTable();
     });
   </script>
-@endpush -->
+@endpush
