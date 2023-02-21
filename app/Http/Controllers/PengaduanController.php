@@ -19,7 +19,7 @@ class PengaduanController extends Controller
     public function index()
     {
         //
-        $pengaduans = Pengaduan::select('id','tgl_pengaduan','isi_laporan', 'status')->where('users_id', Auth::user()->id)->get();
+        $pengaduans = Pengaduan::select('id','tgl_pengaduan','isi_laporan', 'status')->get();
         return view('pengaduan.index', compact('pengaduans'));
     }
 

@@ -24,6 +24,6 @@ class Checklevel
                 return $next($request);
             }
         }
-        return redirect()->route('error.403');
+        return redirect()->route('error,403');
     }
 }
