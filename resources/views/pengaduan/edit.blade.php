@@ -31,7 +31,7 @@
           </div>
           <div class="form-group" >
             <label for="formFile" class="form-label">Foto</label>
-            <img src="{{ url('storage/' . $pengaduan->foto) }}" alt="" srcset="">
+            <img src="{{ url('storage/' . $pengaduan->foto) }}" alt="" srcset="" style="width:500px;">
           </div>
 
           <div class="card-footer">

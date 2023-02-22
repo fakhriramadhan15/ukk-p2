@@ -29,7 +29,7 @@
           </div>
           <div class="form-group" >
             <label for="formFile" class="form-label">Foto</label>
-            <img src="{{ url('storage/' . $pengaduans->foto) }}" alt="" srcset="">
+            <img src="{{ url('storage/' . $pengaduans->foto) }}" alt="" srcset="" style="width:500px;">
           </div>  
       </p>
     </div>
