@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="{{asset ('adminlte/index3.html')}}" class="brand-link">
      
-      <span class="brand-text font-weight-light">adminlte</span>
+      <span class="brand-text font-weight-light">PENGADUAN MASYARAKAT</span>
     </a>
 
     <!-- Sidebar -->
