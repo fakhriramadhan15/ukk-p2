@@ -13,7 +13,7 @@
       <div class="card-body">
         <div class="form-group">
           <label for="">Nama Pelapor</label>
-          <input type="text" name="tanggal" id="tanggal" value="{{ $pengaduans->users_id }}" disabled>
+          <input type="text" name="tanggal" id="tanggal" value="{{ $pengaduans->user->name }}" disabled>
         </div>
         <div class="form-group">
           <label for="">Tanggal Pengaduan</label>

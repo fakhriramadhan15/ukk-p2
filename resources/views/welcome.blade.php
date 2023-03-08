@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
                         @auth
-                        <a href="{{ url('/home') }}" class="nav-item nav-link active">Home</a>
+                        <a href="{{ route('login') }}" class="nav-item nav-link active">Home</a>
                         @else
                         <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
                         @if (Route::has('register'))

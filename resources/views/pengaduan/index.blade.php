@@ -47,10 +47,12 @@
                       <a class="btn btn-primary"   href="pengaduan/{{ $item->id }}">Detail</a>
                     @endif
                 @else
+                
                   <a class="btn btn-primary"  href="/pengaduan/{{ $item->id }}/">Detail</a>
                   @if ($item->status == 'selesai')
-                  <a class="btn btn-secondary"  href="">Cetak</a>
-
+                  @if (auth()->user()->level == 'admin')
+                  <a class="btn btn-secondary"  href="/user">Cetak</a>
+                  @endif                
                   @else
                   <a class="btn btn-secondary"  href="{{ route('tanggapan.create', $item->id) }}">Tanggapan</a>
                   @endif

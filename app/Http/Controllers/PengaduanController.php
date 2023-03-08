@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengaduan;
+use App\Models\Tanggapan;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,7 @@ class PengaduanController extends Controller
         //
         $request->validate([
             'isi_laporan' => 'required|min:10',
-            'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'foto' => 'required|image|mimes:jpg,jpeg,png,jfif|max:2048',
         ], [
             'isi_laporan.required'      => 'Isi laporan wajib di isi',
             'isi_laporan.min'           => 'Isi laporan minimal 10 Karakter',
@@ -73,11 +74,12 @@ class PengaduanController extends Controller
      * @param  \App\Models\Pengaduan  $pengaduan
      * @return \Illuminate\Http\Response
      */
-    public function show(Pengaduan $pengaduan)
+    public function show(Pengaduan $pengaduan,Tanggapan $tanggapan)
     {
         // $pengaduans = Pengaduan::all()->where('id', $pengaduan->id);
         $pengaduans = Pengaduan::find($pengaduan->id);
-        return view('pengaduan.show', compact('pengaduans'));
+        $tanggapans = Tanggapan::find($tanggapan->id);
+        return view('pengaduan.show', compact('pengaduans', 'tanggapans'));
     }
 
     /**

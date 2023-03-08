@@ -6,7 +6,9 @@ use App\Http\Controllers\{
     PengaduanController,
     LoginController,
     DashboardController,
-    RegisterController
+    RegisterController,
+    UserController
+    
 };
 
 /*
@@ -52,3 +54,7 @@ Route::middleware(['auth', 'level:petugas'])->group(function () {
 Route::middleware(['auth', 'level:masyarakat'])->group(function () {
     Route::get('/dashboard/masyarakat', [DashboardController::class, 'masyarakat'])->name('dashboard.masyarakat');
 });
+
+Route::get('user', [UserController::class, 'index']);
+Route::get('generatepdf', [UserController::class, 'generatepdf'])->name('user.pdf');
+
